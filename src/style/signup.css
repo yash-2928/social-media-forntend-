@@ -1,0 +1,11 @@
+.main{
+    border-radius: 3px;
+    background-color: rgb(238, 62, 62);
+    margin: 250px;
+}
+.card{
+    height: 850px;
+    width: 500px;
+    border: 1px solid #1b1a1a;
+    padding: 50px 20px 20px 20px;    
+}
