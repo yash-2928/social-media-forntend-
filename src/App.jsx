@@ -24,11 +24,6 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  handleLogout() {
-    localStorage.removeItem(CURRENT_USER);
-    this.setState({ currentUser: null })
-  }
-
 
   handleLogin(email, password) {
     login(email, password).then(data => {
@@ -39,24 +34,18 @@ class App extends React.Component {
 
   render() {
     if (this.state.currentUser) {
-      return <div>
-        <h1>{this.state.currentUser.email}</h1>
-        <button onClick={this.handleLogout}>Logout</button>
-      </div>
+      return <> 
+        <Header />
+        <Body />
+      </>
     } else {
       return <Router>
-        <div>
+        <>
           <Route exact path="/" component={() => <Login login={this.handleLogin} />} />
           <Route path="/signup" component={Signup} />
-        </div>
+        </>
       </Router>
     }
-    // return (
-    //   <>
-    //     <Header />
-    //     <Body />
-    //   </>
-    // );
   }
 }
 
