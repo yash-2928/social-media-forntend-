@@ -13,17 +13,17 @@ class Image extends React.Component {
         <Card>
           <Card.Header>
             <Col>
-                <Card.Img src="" roundedCircle />
-                <Card.Text>User Name</Card.Text>
-                <Card.Date></Card.Date>
-            </Col>  
+              <Card.Img src="" roundedCircle />
+              <Card.Text>User Name</Card.Text>
+              <Card.Date></Card.Date>
+            </Col>
           </Card.Header>
-          <Card.Body>      
+          <Card.Body>
             <Card.Img variant="bottom" src="" />
             <Card.Text>
-                your post titel and content here
-            </Card.Text>  
-          </Card.Body>      
+              your post title and content here
+            </Card.Text>
+          </Card.Body>
           <Card.Footer>
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
@@ -37,9 +37,9 @@ class Image extends React.Component {
               </IconButton>
               <IconButton aria-label="report">
                 <ReportIcon />
-              </IconButton>                
-            </CardActions>              
-          </Card.Footer>    
+              </IconButton>
+            </CardActions>
+          </Card.Footer>
         </Card>
       </Container>
     );

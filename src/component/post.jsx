@@ -3,8 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import { CURRENT_USER } from '../App';
 import PostService from '../service/postService';
 import CreatePost from './CreatePost';
-import Image from './Layout/image';
-import Document from './Layout/document';
+import PostItem from './PostItem';
 
 class Post extends React.Component {
   constructor(props) {
@@ -22,8 +21,10 @@ class Post extends React.Component {
     this.loadPosts = this.loadPosts.bind(this);
     this.createPost = this.createPost.bind(this);
 
-    this.loadPosts()
+  }
 
+  componentDidMount() {
+    this.loadPosts()
   }
 
   loadPosts() {
@@ -34,7 +35,7 @@ class Post extends React.Component {
 
   createPost(title, content, type) {
     this.postService.createPost({
-      enrollmentNo: this.state.currentUser.enrollmentNo,
+      userId: this.state.currentUser.userId,
       postTitle: title,
       postType: type,
       content: content
@@ -42,17 +43,11 @@ class Post extends React.Component {
   }
 
   render() {
-    let file_extention = this.state.posts.postType.split('.').pop();
     return (
       <Container>
         <Row><CreatePost createPost={this.createPost} /></Row>
-        
-        if(file_extention === ("png" || "jpeg")){
-          <Image />
-          }
-        else (file_extention === "pdf"){
-          <Document />
-        }
+        <hr />
+        {this.state.posts.map((post, i) => <PostItem key={i} {...post} />)}
       </Container>
     );
   }
