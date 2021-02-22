@@ -7,7 +7,7 @@ import Signup from './component/signup';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { login } from './service/authService';
 
-const CURRENT_USER = "currentUser"
+export const CURRENT_USER = "currentUser"
 
 class App extends React.Component {
 
@@ -24,20 +24,31 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
+  handleLogout() {
+    localStorage.removeItem(CURRENT_USER);
+    this.setState({ currentUser: null }, () => {
+      window.location.pathname = "/"
+    })
+  }
+
 
   handleLogin(email, password) {
     login(email, password).then(data => {
-      this.setState({ currentUser: data })
       localStorage.setItem(CURRENT_USER, JSON.stringify(data))
+      this.setState({ currentUser: data }, () => {
+        window.location.pathname = "/post"
+      })
     })
   }
 
   render() {
     if (this.state.currentUser) {
-      return <> 
-        <Header />
-        <Body />
-      </>
+      return <div>
+        <>
+          <Header logout={this.handleLogout} />
+          <Body />
+        </>
+      </div>
     } else {
       return <Router>
         <>
